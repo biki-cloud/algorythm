@@ -33,9 +33,6 @@ class BinarySearchTree(object):
 
     def inorder(self) -> None:
         def _inorder(node: Node) -> None:
-            # Inorder Left, Root, Right
-            # Preorder Root, Left, Right
-            # Postorder Left, Right, Root
             if node is not None:
                 _inorder(node.left)
                 print(node.value)
@@ -96,3 +93,7 @@ if __name__ == '__main__':
     binary_tree.insert(10)
     binary_tree.insert(2)
     binary_tree.inorder()
+    print(binary_tree.search(4))
+    binary_tree.remove(6)
+    print('############ remove')
+    print(binary_tree.inorder())
