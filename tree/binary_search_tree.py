@@ -97,3 +97,4 @@ if __name__ == '__main__':
     binary_tree.remove(6)
     print('############ remove')
     print(binary_tree.inorder())
+    print('fffffff')
