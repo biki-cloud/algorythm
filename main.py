@@ -1,39 +1,62 @@
 from tree.binary_search_tree import BinarySearchTree
-class Node(object):
-    def __init__(self, value: int):
-        self.value = value
-        self.left = None
-        self.right = None
-
-def insert(node: Node, value: int) -> Node:
-    if node is None:
-        return Node(value)
-
-    if value < node.value:
-        node.left = insert(node.left, value)
-    else:
-        node.right = insert(node.right, value)
-    return node
-
-def inoder(node) -> None:
-    if node is not None:
-        inoder(node.left)
-        print(node.value)
-        if low <= node.value and high >= node.value:
-            sum += node.value
-        inoder(node.right)
-    print(sum)
-
-root = [10,5,15,3,7,None,18]
-low = 7
-high = 15
-sum = 0
-tree = None
-for i in root:
-    if i:
-        tree = insert(tree,i)
 
 
-inoder(tree)
+class MaxStack:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.stack = []
+
+    def push(self, x: int) -> None:
+        if not self.stack:
+            self.stack.append((x, x))
+        else:
+            mx = self.stack[-1][1]
+            self.stack.append((x, max(x, mx)))
+
+    def pop(self) -> int:
+        if self.stack:
+            e = self.stack.pop()
+            return e[0]
+        return None
+
+    def top(self) -> int:
+        if self.stack:
+            return self.stack[-1][0]
+        return None
+
+    def peekMax(self) -> int:
+        if self.stack:
+            return self.stack[-1][1]
+        return None
+
+    def popMax(self) -> int:
+        if self.stack:
+            max, index = 0,0
+            for i,n in enumerate(self.stack):
+                if max < n or max == n:
+                    max = n
+                    index = i
+            return self.stack.pop(index)
+        return 0
 
 
+obj = MaxStack()
+obj.push(5)
+obj.push(1)
+obj.push(5)
+print(obj.stack)
+print(obj.top())
+print(obj.stack)
+print(obj.popMax())
+print(obj.stack)
+print(obj.top())
+print(obj.stack)
+print(obj.peekMax())
+print(obj.stack)
+print(obj.pop())
+print(obj.stack)
+print(obj.top())
+print(obj.stack)
